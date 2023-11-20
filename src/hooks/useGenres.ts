@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import ms from "ms";
 import APIClient from "../services/api-client";
 
 import genres from "../data/genres";
@@ -15,7 +16,7 @@ const useGenres = () => {
   return useQuery({
     queryKey: ["genres"],
     queryFn: apiClient.getAll,
-    staleTime: 1000 * 60 * 60 * 24, // 24hrs
+    staleTime: ms("24"),
     initialData: {
       count: genres.length,
       results: genres,
